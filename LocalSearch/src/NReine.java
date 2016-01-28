@@ -37,6 +37,7 @@ public class NReine implements Probleme {
 
 	public ArrayList<Node> solve(int nbQ) {
 		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
