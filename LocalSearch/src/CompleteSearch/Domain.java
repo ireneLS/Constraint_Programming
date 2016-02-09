@@ -23,7 +23,9 @@ public class Domain {
 		}
 		return false;
 	}
-	
+	public int getVariables (int pos){
+		return variables.get(pos);
+	}
 	
 	
 }
