@@ -4,9 +4,11 @@ import java.util.Random;
 
 import CompleteSearch.Domain;
 import CompleteSearch.Node;
+import CompleteSearch.Problem;
+import CompleteSearch.Proof;
 
 
-public class NReine implements Probleme {
+public class NReine implements LocalSearchProblem {
 	
 	
 	int nbR;
@@ -65,5 +67,30 @@ public class NReine implements Probleme {
 		
 		return null;
 	}
+
+	//TODO A VRAIMENT FAIRE
+	public int countViolatedConstraints(Node node) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	//Ca osef pour l'instant
+	//TODO Fusionner LocalSearchProblem et CompleteSearch.Problem
+	public Node initialNode() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public Proof testSat(Node node) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void printSolution(Node node) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 }
