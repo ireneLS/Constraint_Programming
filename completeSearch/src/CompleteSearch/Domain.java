@@ -13,6 +13,11 @@ public class Domain {
 	public int getSize() {
 		return variables.size();
 	}
+
+	public int getVariable(int i) {
+		// TODO Auto-generated method stub
+		return variables.get(i);
+	}
 	
 	
 	
