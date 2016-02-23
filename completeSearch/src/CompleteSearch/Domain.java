@@ -2,29 +2,22 @@ package CompleteSearch;
 
 import java.util.ArrayList;
 
-public class Domain extends ArrayList<Integer> {
+public class Domain {
 	
-	public Domain(Integer var) {
-		super();
-		this.add(var);
-	}
+	ArrayList<Integer> variables;
 	
 	public Domain(ArrayList<Integer> vars){
-		super(vars);
+		this.variables = vars;
 	}
 
-	/**
-	 * @deprecated
-	 */
 	public int getSize() {
-		return this.size();
+		return variables.size();
 	}
 
-	/**
-	 * @deprecated
-	 */
-	public int getVariable(int i) {
-		// TODO Auto-generated method stub
+	public Integer getVariable(int i) {
 		return variables.get(i);
 	}
+	
+	
+	
 }

@@ -2,28 +2,29 @@ package CompleteSearch;
 
 import java.util.ArrayList;
 
-public class Node extends ArrayList<Domain>{
+public class Node {
+
+	ArrayList<Domain> doms;
 	
-	public Node() {
-		super();
+	public Node(ArrayList<Domain> domains){
+		this.doms=domains;
 	}
 	
-	public Node(Node n) {
-		super(n);
+	public Node(Integer variable, Domain dom, Node node) {
+		// retourne un noeud
 	}
 
-	/**
-	 * @deprecated
-	 */
+
+
 	public int getSize(){
-		return this.size();
+		return doms.size();
 	}
 	
-	/**
-	 * @deprecated
-	 */
 	public ArrayList<Domain> getDomains(){
-		return this;
+		return doms;
 	}
-
+	
+	public Domain getOneDomain(int i){
+		return doms.get(i);
+	}
 }
