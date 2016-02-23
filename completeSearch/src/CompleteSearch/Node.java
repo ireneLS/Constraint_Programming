@@ -11,25 +11,13 @@ public class Node extends ArrayList<Domain>{
 	public Node(Node n) {
 		super(n);
 	}
+	public Node(Integer variable, Domain dom, Node node) {
+		// retourne un noeud
+	}
 
-	/**
-	 * @deprecated
-	 */
-	public int getSize(){
-		return this.size();
-	}
-	
-	/**
-	 * @deprecated
-	 */
-	public ArrayList<Domain> getDomains(){
-		return this;
-	}
+
 	public Node(ArrayList<Domain> domains){
 		this.doms=domains;
 	}
 	
-	public Node(Integer variable, Domain dom, Node node) {
-		// retourne un noeud
-	}
 }

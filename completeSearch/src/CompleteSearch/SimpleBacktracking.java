@@ -37,7 +37,7 @@ public class SimpleBacktracking implements BacktrackingAlgo{
 			Domain dom;
 			for(int i=0; i< node.get(domain).size() ;++i){
 				dom = node.get(domain);
-				Node nouveauNode = new Node(dom.getVariable(i), dom, node);
+				Node nouveauNode = new Node(dom.get(i), dom, node);
 				
 				solutions.addAll(backtracking(nouveauNode));
 			}
