@@ -25,5 +25,11 @@ public class Node extends ArrayList<Domain>{
 	public ArrayList<Domain> getDomains(){
 		return this;
 	}
-
+	public Node(ArrayList<Domain> domains){
+		this.doms=domains;
+	}
+	
+	public Node(Integer variable, Domain dom, Node node) {
+		// retourne un noeud
+	}
 }

@@ -8,7 +8,7 @@ public class MinDomain implements BranchingStrategy {
 		
 	}
 
-	public int getNext(Node node){
+	public int getNextDomain(Node node){
 		ArrayList<Domain> domains = node.getDomains();
 		int choix=-1;
 		for(int i=0; i<node.getSize();++i){

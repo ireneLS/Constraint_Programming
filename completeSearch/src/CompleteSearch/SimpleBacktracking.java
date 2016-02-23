@@ -29,14 +29,14 @@ public class SimpleBacktracking implements BacktrackingAlgo{
 	}
 
 	public ArrayList<ArrayList<Domain>> backtracking(Node node){
-		int domain = strategy.getNext(node);
+		int domain = strategy.getNextDomain(node);
 		
 		ArrayList<ArrayList<Domain>> solutions = new ArrayList<ArrayList<Domain>>();
 		
 		if(problem.testSat(node)==Proof.middle_node){
 			Domain dom;
-			for(int i=0; i< node.getOneDomain(domain).getSize() ;++i){
-				dom = node.getOneDomain(domain);
+			for(int i=0; i< node.get(domain).size() ;++i){
+				dom = node.get(domain);
 				Node nouveauNode = new Node(dom.getVariable(i), dom, node);
 				
 				solutions.addAll(backtracking(nouveauNode));
