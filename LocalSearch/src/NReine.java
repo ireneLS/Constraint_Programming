@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Random;
 
@@ -21,39 +22,48 @@ public class NReine implements LocalSearchProblem {
 	
 
 	
-	public Node initialNode(){
+	public Node init(){
 		
-		//CrÃ©ation de l'ensemble de valeurs possible pour les variables du problÃ¨me
+		//Création de l'ensemble de valeurs possible pour les variables du problème
 		ArrayList<Integer> valAleatoires = new ArrayList<Integer>();
 		for (int i = 0;i<nbR;i++){
 			valAleatoires.add(1+i);
 		}
 		
-		
 		Random r = new Random();
 		Node n = new Node();
 		
-		for (int i = 1 ; i<nbR ; i++){
-			//On recherche une position alÃ©atoire dans le tableau 
+		for (int i = 1 ; i<=nbR ; i++){
+			//On supprime la valeur correspondant à la grande diagonal
+			
+			valAleatoires.remove(Arrays.asList(i));
+			
+			//On recherche une position aléatoire dans le tableau 
 			int pos = r.nextInt(valAleatoires.size());
-			//La valeur de la variable va Ãªtre Ã©gale Ã  l'Ã©lÃ©ment Ã  la position gÃ©nÃ©rÃ©e alÃ©atoirement
+			//La valeur de la variable va être égale à l'élément à la position générée aléatoirement
 			int temp = valAleatoires.get(pos);
-			//On supprime la valeur dÃ©jÃ  utilisÃ©e 
+			//On supprime la valeur déjà utilisée 
 			valAleatoires.remove(pos);
 			
-			Domain dom = new Domain(new ArrayList<Integer>(temp));
-			n.setDomain(dom);
 			
-			
-		}
-	
-		return n;
+			//Ajout de la valeur de la variable dans son domaine
+			ArrayList<Integer> domain = new ArrayList<Integer>();
+			domain.add(temp);
+			Domain dom = new Domain(domain);
 		
+			n.add(dom);
+			
+			//On ajoute une nouvelle valeur possible (une histoire de grande diagonale)
+			valAleatoires.add(i);
+		}
+		return n;
 	}
+	
+
 	public boolean verificationSolution(Node n){
-		for(int i = 0; i < n.getDomains().size();i++){
-			for (int j = i+1;j<n.getDomains().size(); i++){
-				if( Math.abs((i+1)-(j+1)) == Math.abs( n.getDomains().get(j).getVariable(0)-n.getDomains().get(i).getVariable(0))){
+		for(int i = 0; i < n.size()-1;i++){
+			for (int j = i+1;j<n.size(); j++){
+				if( Math.abs((i+1)-(j+1)) == Math.abs( n.get(j).get(0)-n.get(i).get(0))){
 					return false;
 				}
 			}
@@ -61,6 +71,9 @@ public class NReine implements LocalSearchProblem {
 		
 		return true;
 	}
+	
+	
+	
 
 	public ArrayList<Node> solve(int nbQ) {
 		// TODO Auto-generated method stub
@@ -69,17 +82,26 @@ public class NReine implements LocalSearchProblem {
 	}
 
 	//TODO A VRAIMENT FAIRE
-	public int countViolatedConstraints(Node node) {
+	public int countViolatedConstraints(Node n) {
 		// TODO Auto-generated method stub
-		return 0;
+		int cpt = 0;
+		
+		for(int i = 0; i < n.size()-1;i++){
+			for (int j = i+1;j<n.size(); j++){
+				if( Math.abs((i+1)-(j+1)) == Math.abs( n.get(j).get(0)-n.get(i).get(0))){
+					cpt++;
+				}
+			}
+		}
+		return cpt;
 	}
 
 	//Ca osef pour l'instant
 	//TODO Fusionner LocalSearchProblem et CompleteSearch.Problem
-/*	public Node initialNode() {
+	public Node initialNode() {
 		// TODO Auto-generated method stub
 		return null;
-	}*/
+	}
 	
 	public Proof testSat(Node node) {
 		// TODO Auto-generated method stub

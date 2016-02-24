@@ -1,0 +1,20 @@
+import java.util.ArrayList;
+
+import CompleteSearch.Domain;
+import CompleteSearch.Node;
+
+
+public class Main {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Node test;
+		NReine testR = new NReine(4);
+		test = testR.init();
+		test.afficherVariables();
+	}
+
+}

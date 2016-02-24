@@ -17,7 +17,16 @@ public class Node extends ArrayList<Domain>{
 
 
 	public Node(ArrayList<Domain> domains){
-		this.doms=domains;
+		this.addAll(domains);
 	}
-	
+	public String afficherVariables(){
+		String res = ""; 
+		
+		for (int i=0;i<this.size();i++){
+			res += "variable: "+(i+1);
+			res += this.get(i).afficherDomain();
+			
+		}
+		return res;
+	}
 }

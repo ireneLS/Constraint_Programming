@@ -1,0 +1,25 @@
+package CompleteSearch;
+
+import java.util.ArrayList;
+
+public class Domain extends ArrayList<Integer> {
+	
+	public Domain(Integer var) {
+		super();
+		this.add(var);
+	}
+	
+	public Domain(ArrayList<Integer> vars){
+		super(vars);
+	}
+	
+	public String afficherDomain() {
+		// TODO Auto-generated method stub
+		String res = "{";
+		for (int var : this){
+			System.out.print(var+",");
+		}
+		System.out.print("}");
+	}
+
+}
