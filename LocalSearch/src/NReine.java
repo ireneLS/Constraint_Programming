@@ -21,7 +21,7 @@ public class NReine implements LocalSearchProblem {
 	
 
 	
-	public Node init(){
+	public Node initialNode(){
 		
 		//Création de l'ensemble de valeurs possible pour les variables du problème
 		ArrayList<Integer> valAleatoires = new ArrayList<Integer>();
@@ -53,7 +53,7 @@ public class NReine implements LocalSearchProblem {
 	public boolean verificationSolution(Node n){
 		for(int i = 0; i < n.getDomains().size();i++){
 			for (int j = i+1;j<n.getDomains().size(); i++){
-				if( Math.abs((i+1)-(j+1)) == Math.abs( n.getDomains().get(j).getVariables(0)-n.getDomains().get(i).getVariables(0))){
+				if( Math.abs((i+1)-(j+1)) == Math.abs( n.getDomains().get(j).getVariable(0)-n.getDomains().get(i).getVariable(0))){
 					return false;
 				}
 			}
@@ -76,10 +76,10 @@ public class NReine implements LocalSearchProblem {
 
 	//Ca osef pour l'instant
 	//TODO Fusionner LocalSearchProblem et CompleteSearch.Problem
-	public Node initialNode() {
+/*	public Node initialNode() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 	
 	public Proof testSat(Node node) {
 		// TODO Auto-generated method stub
