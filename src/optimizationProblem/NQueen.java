@@ -28,41 +28,15 @@ public class NQueen implements Problem {
 
 		Random r = new Random();
 		Node n = new Node();
-		// boolean diagonal1=false;
-		// boolean diagonal2=false;
+		
 		for (int i = 1; i <= nbR; i++) {
-			/*
-			 * if(diagonal1){ if (i<=nbR-2){ if(valAleatoires.get(0) == i){
-			 * n.add(new Domain(new
-			 * ArrayList<Integer>(){{add(valAleatoires.get(1));}})); n.add(new
-			 * Domain(new ArrayList<Integer>(){{add(valAleatoires.get(0));}}));
-			 * } else{
-			 * 
-			 * } i=nbR;
-			 * 
-			 * } else{
-			 * 
-			 * } } else if(diagonal2){ if (i<=nbR-2){
-			 * 
-			 * 
-			 * i=nbR;
-			 * 
-			 * } else{
-			 * 
-			 * } }
-			 */
-			// else{
+			
 			// On recherche une position aléatoire dans le tableau
 			int pos = r.nextInt(valAleatoires.size());
 			// La valeur de la variable va être égale à l'élément à la position
 			// générée aléatoirement
 			int temp = valAleatoires.get(pos);
-			/*
-			 * if (temp == i ){ diagonal1 = true; }
-			 */
-			/*
-			 * else if(temp == this.nbR-i+1){ diagonal2=true; }
-			 */
+		
 			// On supprime la valeur déjà utilisée
 			valAleatoires.remove(pos);
 
@@ -75,7 +49,6 @@ public class NQueen implements Problem {
 			}));
 		}
 
-		// }
 		return n;
 	}
 
