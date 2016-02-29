@@ -64,19 +64,8 @@ public class NReine implements Problem {
 		
 		return true;
 	}
-	
-	
-	
 
-	public ArrayList<Node> solve(int nbQ) {
-		// TODO Auto-generated method stub
-		
-		return null;
-	}
-
-	//TODO A VRAIMENT FAIRE
 	public int countViolatedConstraints(Node n) {
-		// TODO Auto-generated method stub
 		int cpt = 0;
 		
 		for(int i = 0; i < n.size()-1;i++){
@@ -91,8 +80,15 @@ public class NReine implements Problem {
 
 	//Recherche complete
 	public Node initialNode() {
-		// TODO Auto-generated method stub
-		return null;
+		Node result = new Node();
+		for(int i = 1; i <= nbR ; i++) {
+			Domain d = new Domain();
+			for(int j = 1; j<= nbR*nbR ; j++ ){
+				d.add(j);
+			}
+			result.add(d);
+		}
+		return result;
 	}
 	
 	public Proof testSat(Node node) {

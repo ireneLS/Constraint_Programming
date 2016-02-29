@@ -8,5 +8,6 @@ public interface Problem {
 	void printSolution(Node node);
 	
 	//Recherche local
+	Node init();
 	int countViolatedConstraints(Node node);
 }
