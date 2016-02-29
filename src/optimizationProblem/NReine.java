@@ -1,8 +1,8 @@
 package optimizationProblem;
 
 import java.util.ArrayList;
-
 import java.util.Random;
+
 
 
 
@@ -19,58 +19,67 @@ public class NReine implements Problem {
 	}
 	
 	// Recherche local
+@SuppressWarnings("serial")
 public Node init(){
 		
 		//Création de l'ensemble de valeurs possible pour les variables du problème
-		ArrayList<Integer> valAleatoires = new ArrayList<Integer>();
+		final ArrayList<Integer> valAleatoires = new ArrayList<Integer>();
 		for (int i = 0;i<nbR;i++){
 			valAleatoires.add(1+i);
 		}
 		
 		Random r = new Random();
 		Node n = new Node();
-		//boolean diagonal1=false;
-		//boolean diagonal2=false;
+		boolean diagonal1=false;
+
+		boolean supp;
+		int pos;
+		
 		for (int i = 1 ; i<=nbR ; i++){
-			/*
-			if(diagonal1){
-				if (i<=nbR-2){
+			if (i == nbR-1){
+				n.add(new Domain(new ArrayList<Integer>(){{add(valAleatoires.get(0));}}));
+			}
+			else if(diagonal1 ){
+				if (i>nbR-2){
+					System.out.println(valAleatoires.size());
 					if(valAleatoires.get(0) == i){
 						n.add(new Domain(new ArrayList<Integer>(){{add(valAleatoires.get(1));}}));
 						n.add(new Domain(new ArrayList<Integer>(){{add(valAleatoires.get(0));}}));
 					}
 					else{
-						
+						n.add(new Domain(new ArrayList<Integer>(){{add(valAleatoires.get(0));}}));
+						n.add(new Domain(new ArrayList<Integer>(){{add(valAleatoires.get(1));}}));
 					}
 					i=nbR;
 					
 				}
 				else{
+					supp = (valAleatoires.indexOf(i)!=-1);
+					if(supp){
+						valAleatoires.remove(valAleatoires.indexOf(i));
+					}
+					//On recherche une position aléatoire dans le tableau 
+					pos = r.nextInt(valAleatoires.size());
+					//La valeur de la variable va être égale à l'élément à la position générée aléatoirement
+					int temp = valAleatoires.get(pos);
+					//On supprime la valeur déjà utilisée 
+					valAleatoires.remove(pos);
+					n.add(new Domain(new ArrayList<Integer>(){{add(temp);}}));
+					if(supp){
+						valAleatoires.add(i);
+					}
 					
 				}
 			}
-			else if(diagonal2){
-				if (i<=nbR-2){
-					
-					
-					i=nbR;
-					
-				}
-				else{
-					
-				}
-			}*/
-			//else{
+			
+			else{
 				//On recherche une position aléatoire dans le tableau 
-				int pos = r.nextInt(valAleatoires.size());
+				pos = r.nextInt(valAleatoires.size());
 				//La valeur de la variable va être égale à l'élément à la position générée aléatoirement
 				int temp = valAleatoires.get(pos);
-				/*if (temp == i ){
+				if (temp == i ){
 					diagonal1 = true;
-				}*/
-				/*else if(temp == this.nbR-i+1){
-					diagonal2=true;
-				}*/
+				}
 				//On supprime la valeur déjà utilisée 
 				valAleatoires.remove(pos);
 				
@@ -82,7 +91,7 @@ public Node init(){
 				n.add(new Domain(new ArrayList<Integer>(){{add(temp);}}));
 			}
 			
-		//}
+		}
 	return n;
 }
 	

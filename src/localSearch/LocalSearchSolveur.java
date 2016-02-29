@@ -73,7 +73,7 @@ public class LocalSearchSolveur {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) {
-		LocalSearchSolveur solveur = new LocalSearchSolveur(new NReine(5));
+		LocalSearchSolveur solveur = new LocalSearchSolveur(new NReine(6));
 		List results = solveur.solve();
 		for(Object o : results) {
 			System.out.println(o);
