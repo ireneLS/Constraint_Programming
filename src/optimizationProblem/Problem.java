@@ -10,5 +10,4 @@ public interface Problem {
 	//Recherche local
 	Node init();
 	int countViolatedConstraints(Node node);
-	Node initialNodeLocal();
 }
