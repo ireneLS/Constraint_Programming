@@ -18,18 +18,18 @@ public class LocalSearchSolveur {
 	public LocalSearchSolveur(Problem pb) {
 		solved = false;
 		problem = pb;
-
 	}
 	
+	//TODO fusionner initialNodeLocal et initialNode
 	public List<Node> neighbourhoods(Node node) {
 		List<Node> result = new ArrayList<Node>();
 		for(int i = 0 ; i < node.size() ; i++) {
-			for(Domain d : problem.initialNodeLocal()) {
-				if(!d.equals(node.get(i))) {
-					Node neighbourdhood = new Node(node);
-					neighbourdhood.set(i, d);
-					result.add(neighbourdhood);
-				}
+			for(int j = i + 1 ; j < node.size() ; j++) {
+				Node neighbourdhood = new Node(node);
+				Domain tmp = node.get(j);
+				neighbourdhood.set(j, node.get(i));
+				neighbourdhood.set(i, tmp);
+				result.add(neighbourdhood);
 			}
 		}
 		return result;
@@ -62,6 +62,9 @@ public class LocalSearchSolveur {
 	
 	public Node solve() {
 		Node n = problem.init();
+		if(problem.countViolatedConstraints(n) == 0) {
+			return n;
+		}
 		while(!solved) {
 			n = move(cost(neighbourhoods(n)));
 		}
@@ -70,7 +73,7 @@ public class LocalSearchSolveur {
 	
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) {
-		LocalSearchSolveur solveur = new LocalSearchSolveur(new NReine(4));
+		LocalSearchSolveur solveur = new LocalSearchSolveur(new NReine(5));
 		List results = solveur.solve();
 		for(Object o : results) {
 			System.out.println(o);
