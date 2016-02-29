@@ -1,6 +1,5 @@
 # Constraint_Programming
 Projet du module de programmation par contraintes de M1 ATAL/ALMA.
-L'affiche du texte est pourrie sur github, donc pour + de lisibilité : soit vous l'importez, soit vous éditez le fichier sur github.
 
 CONSIGNES POUR IMPORT/EXPORT :
 J'ai mis les fichiers .project et .metadata pour que ça soit simple d'importer le projet dans eclipse. Vous avez juste à faire "Import..>Existing Project Into Workspace" et décocher "copy projects into workspace".
