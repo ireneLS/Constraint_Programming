@@ -86,11 +86,13 @@ public Node init(){
 	return n;
 }
 	
-
 	public boolean verificationSolution(Node n){
 		for(int i = 0; i < n.size()-1;i++){
 			for (int j = i+1;j<n.size(); j++){
 				if( Math.abs((i+1)-(j+1)) == Math.abs( n.get(j).get(0)-n.get(i).get(0))){
+					return false;
+				}
+				if(n.get(i).get(0).equals(n.get(j).get(0))){
 					return false;
 				}
 			}
@@ -108,12 +110,14 @@ public Node init(){
 
 	//TODO A VRAIMENT FAIRE
 	public int countViolatedConstraints(Node n) {
-		// TODO Auto-generated method stub
 		int cpt = 0;
 		
 		for(int i = 0; i < n.size()-1;i++){
 			for (int j = i+1;j<n.size(); j++){
 				if( Math.abs((i+1)-(j+1)) == Math.abs( n.get(j).get(0)-n.get(i).get(0))){
+					cpt++;
+				}
+				if(n.get(i).get(0).equals(n.get(j).get(0))){
 					cpt++;
 				}
 			}
