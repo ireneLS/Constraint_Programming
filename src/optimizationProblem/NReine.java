@@ -92,10 +92,29 @@ public class NReine implements Problem {
 		return cpt;
 	}
 
+	public Node initialNodeLocal() {
+		Node result = new Node();
+		for(int i = 1; i <= nbR ; i++) {
+			Domain d = new Domain();
+			for(int j = 1; j<= nbR ; j++ ){
+				d.add(j);
+			}
+			result.add(d);
+		}
+		return result;
+	}
+	
 	//Recherche complete
 	public Node initialNode() {
-		// TODO Auto-generated method stub
-		return null;
+		Node result = new Node();
+		for(int i = 1; i <= nbR ; i++) {
+			Domain d = new Domain();
+			for(int j = 1; j<= nbR*nbR ; j++ ){
+				d.add(j);
+			}
+			result.add(d);
+		}
+		return result;
 	}
 	
 	public Proof testSat(Node node) {

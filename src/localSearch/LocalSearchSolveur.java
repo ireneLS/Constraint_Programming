@@ -13,7 +13,6 @@ import optimizationProblem.Problem;
 public class LocalSearchSolveur {
 
 	private Problem problem;
-	private Node initialDomain;
 	private boolean solved;
 	
 	public LocalSearchSolveur(Problem pb) {
@@ -25,7 +24,7 @@ public class LocalSearchSolveur {
 	public List<Node> neighbourhoods(Node node) {
 		List<Node> result = new ArrayList<Node>();
 		for(int i = 0 ; i < node.size() ; i++) {
-			for(Domain d : problem.initialNode()) {
+			for(Domain d : problem.initialNodeLocal()) {
 				if(!d.equals(node.get(i))) {
 					Node neighbourdhood = new Node(node);
 					neighbourdhood.set(i, d);
