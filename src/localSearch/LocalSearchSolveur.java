@@ -19,24 +19,15 @@ public class LocalSearchSolveur {
 	public LocalSearchSolveur(Problem pb) {
 		solved = false;
 		problem = pb;
-		initialDomain = problem.initialNode();
+
 	}
 	
-	//TODO Meilleur initialisation
-	public Node initialNode() {
-		Node result = new Node();
-		for(Domain d : initialDomain) {
-			result.add(new Domain(d.get(0)));
-		}
-		return result;
-	}
-	
-	public List<Node> neighbourhoods(Node initialNode) {
+	public List<Node> neighbourhoods(Node node) {
 		List<Node> result = new ArrayList<Node>();
-		for(int i = 0 ; i < initialNode.size() ; i++) {
-			for(Domain d : initialDomain) {
-				if(!d.equals(initialNode.get(i))) {
-					Node neighbourdhood = new Node(initialNode);
+		for(int i = 0 ; i < node.size() ; i++) {
+			for(Domain d : problem.initialNode()) {
+				if(!d.equals(node.get(i))) {
+					Node neighbourdhood = new Node(node);
 					neighbourdhood.set(i, d);
 					result.add(neighbourdhood);
 				}
@@ -53,6 +44,8 @@ public class LocalSearchSolveur {
 		return result;
 	}
 
+
+	// Optimisable
 	public Node move(Map<Node, Integer> costs) {
 		Node result = new Node();
 		Integer minCost = Integer.MAX_VALUE;
@@ -69,7 +62,7 @@ public class LocalSearchSolveur {
 	}
 	
 	public Node solve() {
-		Node n = initialNode();
+		Node n = problem.init();
 		while(!solved) {
 			n = move(cost(neighbourhoods(n)));
 		}

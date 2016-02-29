@@ -15,6 +15,7 @@ public class SimpleBacktracking implements BacktrackingAlgo{
 		this.problem=problem;
 	}
 	
+
 	public int solve(BranchingStrategy strat) {
 		// TODO Auto-generated method stub
 		Node racine=problem.initialNode();
@@ -25,6 +26,7 @@ public class SimpleBacktracking implements BacktrackingAlgo{
 		return 0;
 	}
 
+
 	public void branch(Node node) {
 		// TODO Auto-generated method stub
 		
@@ -34,7 +36,7 @@ public class SimpleBacktracking implements BacktrackingAlgo{
 		int domain = strategy.getNextDomain(node);
 		
 		ArrayList<Node> solutions = new ArrayList<Node>();
-		
+
 		if(problem.testSat(node)==Proof.middle_node){
 			Domain dom;
 			for(int i=0; i< node.get(domain).size() ;++i){

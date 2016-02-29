@@ -1,6 +1,5 @@
 package optimizationProblem;
 
-
 public enum Proof {
 		failure,
 		success,

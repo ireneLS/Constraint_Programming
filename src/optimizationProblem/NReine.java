@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+
 import completeSearch.DefaultContraints;
 
 public class NReine implements Problem {
@@ -19,7 +20,8 @@ public class NReine implements Problem {
 	// Recherche local
 	public Node init(){
 		
-		//Crï¿½ation de l'ensemble de valeurs possible pour les variables du problï¿½me
+
+		//Création de l'ensemble de valeurs possible pour les variables du problème
 		ArrayList<Integer> valAleatoires = new ArrayList<Integer>();
 		for (int i = 0;i<nbR;i++){
 			valAleatoires.add(1+i);
@@ -29,15 +31,16 @@ public class NReine implements Problem {
 		Node n = new Node();
 		
 		for (int i = 1 ; i<=nbR ; i++){
-			//On supprime la valeur correspondant ï¿½ la grande diagonal
+
+			//On supprime la valeur correspondant à la grande diagonal
 			
 			valAleatoires.remove(Arrays.asList(i));
 			
-			//On recherche une position alï¿½atoire dans le tableau 
+			//On recherche une position aléatoire dans le tableau 
 			int pos = r.nextInt(valAleatoires.size());
-			//La valeur de la variable va ï¿½tre ï¿½gale ï¿½ l'ï¿½lï¿½ment ï¿½ la position gï¿½nï¿½rï¿½e alï¿½atoirement
+			//La valeur de la variable va être égale à l'élément à la position générée aléatoirement
 			int temp = valAleatoires.get(pos);
-			//On supprime la valeur dï¿½jï¿½ utilisï¿½e 
+			//On supprime la valeur déjà utilisée 
 			valAleatoires.remove(pos);
 			
 			
@@ -66,9 +69,7 @@ public class NReine implements Problem {
 		
 		return true;
 	}
-	
-	
-	
+
 
 	public ArrayList<Node> solve(int nbQ) {
 		// TODO Auto-generated method stub
