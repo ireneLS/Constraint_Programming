@@ -4,20 +4,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import optimizationProblem.Domain;
-import optimizationProblem.NQueen;
 import optimizationProblem.Node;
 import optimizationProblem.Problem;
 
-public class LocalSearchSolveur {
+public class LocalSearchSolver {
 
 	private Problem problem;
 	private boolean solved;
 	private final int NB_MAX_LOOP = 10000;
 
-	public LocalSearchSolveur(Problem pb) {
+	public LocalSearchSolver(Problem pb) {
 		solved = false;
 		problem = pb;
 	}
@@ -44,7 +42,6 @@ public class LocalSearchSolveur {
 		return result;
 	}
 
-	// Optimisable
 	public Node move(Map<Node, Integer> costs) {
 		List<Node> results = new ArrayList<Node>();
 		Integer minCost = Integer.MAX_VALUE;
@@ -77,31 +74,4 @@ public class LocalSearchSolveur {
 		return n;
 	}
 
-	public static void main(String[] args) {
-		// Lecture du nombre de reines
-		System.out.print(" ---- Problème NQueen ----\nIndiquez le nombre de reines : ");
-		int nbReines = 1;
-		Scanner in = new Scanner(System.in);
-		nbReines = in.nextInt();
-		in.close();
-		
-		// Calcule du temps mis à trouvé la solution
-		long tempsDebut = System.currentTimeMillis();
-		LocalSearchSolveur solveur = new LocalSearchSolveur(new NQueen(nbReines));		
-		Node result = solveur.solve();
-		long seconds = (System.currentTimeMillis() - tempsDebut) / 1000;
-
-		// Affichage si c'est trop long de trouver la solution
-		if (result == null) {
-			System.out.println("Pas de solution.");
-			return;
-		}
-		
-		// Affichage de la solution
-		System.out.println("Solution trouvée en " + seconds + "sc :");
-		int cpt = 1;
-		for (Domain d : result) {
-			System.out.println("Reine " + cpt + " en position [" + cpt++ + "," + d.get(0) + "]");
-		}
-	}
 }
