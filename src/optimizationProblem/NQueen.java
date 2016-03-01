@@ -13,7 +13,14 @@ public class NQueen implements Problem {
 
 	}
 
-	// Recherche local
+	/**
+	 * Méthode renvoyant un ensemble de variables, un Node, qui permet de commencer la recherche local
+	 * Ce node est initilisé de façon à ce que chaque reine soit placée sur un ligne et une colonne différente
+	 * @return Node, le noeud initialisé pour le problème des NQueens en recherche local 
+	 * 
+	 * 
+	 * 
+	 * */
 	@SuppressWarnings("serial")
 	public Node init() {
 
