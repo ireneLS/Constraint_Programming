@@ -73,4 +73,5 @@ public class LocalSearchSolver {
 		}
 		return n;
 	}
+
 }
