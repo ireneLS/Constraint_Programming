@@ -45,9 +45,13 @@ public class LocalSearchSolver {
 	public Node move(Map<Node, Integer> costs) {
 		List<Node> results = new ArrayList<Node>();
 		Integer minCost = Integer.MAX_VALUE;
+		for (Integer cost : costs.values()) {
+			if(cost  <= minCost) {
+				minCost = cost;
+			}
+		}
 		for (Node n : costs.keySet()) {
-			if (costs.get(n) <= minCost) {
-				minCost = costs.get(n);
+			if (costs.get(n) == minCost) {
 				results.add(n);
 			}
 		}
