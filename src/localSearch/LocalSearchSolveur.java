@@ -15,7 +15,7 @@ public class LocalSearchSolveur {
 
 	private Problem problem;
 	private boolean solved;
-	private final int NB_MAX_LOOP = 3000000;
+	private final int NB_MAX_LOOP = 10000;
 
 	public LocalSearchSolveur(Problem pb) {
 		solved = false;
