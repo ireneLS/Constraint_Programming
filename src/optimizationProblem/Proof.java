@@ -1,8 +1,8 @@
 package optimizationProblem;
 
 public enum Proof {
-		failure,
-		success,
-		middle_node;
+		FAILURE,
+		SUCCESS,
+		MIDDLE_NODE;
 }
 

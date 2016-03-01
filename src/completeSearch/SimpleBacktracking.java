@@ -6,49 +6,82 @@ import optimizationProblem.Domain;
 import optimizationProblem.Node;
 import optimizationProblem.Problem;
 
-public class SimpleBacktracking implements BacktrackingAlgo{
+public class SimpleBacktracking implements BacktrackingAlgo {
 
 	Problem problem;
 	BranchingStrategy strategy;
-	
-	public SimpleBacktracking(Problem problem){
-		this.problem=problem;
-	}
-	
+	ArrayList<Node> findedSolution = new ArrayList<Node>();
+	boolean solved = false;
 
-	public int solve(BranchingStrategy strat) {
-		// TODO Auto-generated method stub
-		Node racine=problem.initialNode();
-		strategy=strat;
-		
-		backtracking(racine);
-		
-		return 0;
+	public SimpleBacktracking(Problem problem, BranchingStrategy branchStrat) {
+		this.problem = problem;
+		this.strategy = branchStrat;
 	}
 
-
-	public void branch(Node node) {
-		// TODO Auto-generated method stub
-		
+	public int solve() {
+		Node n = problem.initialNode();
+		return backtracking(n);
 	}
 
-	public ArrayList<Node> backtracking(Node node){
-		int domain = strategy.getNextDomain(node);
-		
+	public ArrayList<Node> branch(Node node) {
+		int nextDomainToBranch = strategy.getNextDomain(node);
 		ArrayList<Node> solutions = new ArrayList<Node>();
+		Integer selectBranchingDomain; // le "domaine du noeud cree par le
+										// branching"
 
-		if(problem.testSat(node)==Proof.middle_node){
-			Domain dom;
-			for(int i=0; i< node.get(domain).size() ;++i){
-				dom = node.get(domain);
-				Node nouveauNode = new Node(dom.get(i), dom, node);
-				
-				solutions.addAll(backtracking(nouveauNode));
+		// J'ajoute autant de noeuds que la taille du domaine selectionné
+		for (int i = 0; i < node.get(nextDomainToBranch).size(); ++i) {
+			// je récupère le domaine pour pouvoir le "prune" des autres noeuds.
+			selectBranchingDomain = node.get(nextDomainToBranch).get(i);
+			Node noeudTmp = new Node();
+			// pour chaque domaine du noeud courant. On l'ajoute au noeud
+			// temporaire en enlevant le domaine avant. sauf pour le noeud
+			// branch où on ne garde que le selectBranchingDomain
+			for (int j = 0; j < node.size(); j++) {
+				Domain domainTmp = new Domain();
+				if (j == nextDomainToBranch) {
+					domainTmp.add(selectBranchingDomain);
+					noeudTmp.add(domainTmp);
+				} else {// TODO bon.... je crois que y a un truc qui cloche
+					domainTmp.addAll(node.get(j));
+					domainTmp.remove(selectBranchingDomain);
+					noeudTmp.add(domainTmp);
+				}
 			}
-		}
-		if(problem.testSat(node)==Proof.success){
-			solutions.add(node);
+			solutions.add(noeudTmp);
 		}
 		return solutions;
+	}
+
+	public int backtracking(Node node) {
+		ArrayList<Node> nextNodes = branch(node);
+		int solutionTrouvee = 0;
+		for (Node nextNode : nextNodes) {
+			Proof proof = problem.testSat(nextNode);
+			if (proof != Proof.FAILURE) {
+				if (proof == Proof.SUCCESS) {
+					findedSolution.add(nextNode);
+					solutionTrouvee = solutionTrouvee + 1;
+				} else {
+					if (proof == Proof.MIDDLE_NODE) {
+						solutionTrouvee = solutionTrouvee + backtracking(nextNode);
+					}
+				}
+			}
+		}
+		return solutionTrouvee;
+	}
+
+	public void printSolution() {
+		if (findedSolution.isEmpty()) {
+			System.out.println("Il n'y a pas de solution");
+			return;
+		}
+		int cpt = 1;
+		for(Node solution : findedSolution) {
+			System.out.println("Solution " + cpt++ + " :");
+			problem.printSolution(solution);
+			System.out.println("------------------");
+		}
 	}
 }
