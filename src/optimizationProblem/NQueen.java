@@ -7,7 +7,7 @@ public class NQueen implements Problem {
 
 	int nbReine;
 
-	// Map<Integer,Integer> courant;
+	
 
 	public NQueen(int nbR) {
 		this.nbReine = nbR;
@@ -71,9 +71,7 @@ public class NQueen implements Problem {
 						- n.get(i).get(0))) {
 					cpt++;
 				}
-				if (n.get(i).get(0).equals(n.get(j).get(0))) {
-					cpt++;
-				}
+				
 			}
 		}
 		return cpt;
