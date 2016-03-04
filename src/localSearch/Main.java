@@ -10,18 +10,18 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Lecture du nombre de reines
-		System.out.print(" ---- Problème NQueen : recherche locale ----\nIndiquez le nombre de reines : ");
+		System.out.print(" ---- Probleme NQueen : recherche locale ----\nIndiquez le nombre de reines : ");
 		int nbReines = 1;
 		Scanner in = new Scanner(System.in);
 		nbReines = in.nextInt();
 		in.close();
 
-		// Calcule du temps mis à trouver la solution
+		// Calcule du temps mis a trouver la solution
 		long tempsDebut = System.currentTimeMillis();
 		Problem pbReines = new NQueen(nbReines);
 		LocalSearchSolver solveur = new LocalSearchSolver(pbReines);
 		Node result = solveur.solve();
-		long seconds = (System.currentTimeMillis() - tempsDebut) / 1000;
+		float seconds = (System.currentTimeMillis() - tempsDebut) / 1000F;
 
 		// Affichage si c'est trop long de trouver la solution
 		if (result == null) {
@@ -30,7 +30,7 @@ public class Main {
 		}
 
 		// Affichage de la solution
-		System.out.println("Solution trouvée en " + seconds + "sc :");
+		System.out.println("Solution trouvï¿½e en " + seconds + "sc :");
 		pbReines.printSolution(result);
 	}
 
